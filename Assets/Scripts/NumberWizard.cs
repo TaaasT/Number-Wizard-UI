@@ -19,26 +19,27 @@ public class NumberWizard : MonoBehaviour
 
     void StartGame()
     {
-        guess = (max + min) / 2;
-        guessText.text = guess.ToString();
-        max = max + 1;
+        NextGuess();
+
     }
 
     public void OnPressHiger()
     {
-        min = guess;
+        if (min >= max || guess == max) return;
+        min = guess + 1;
         NextGuess();
     }
 
     public void OnPressLower()
     {
-        max = guess;
+        if (max <= min) return;
+        max = guess - 1;
         NextGuess();
     }
 
     void NextGuess()
     {
-        guess = (max + min) / 2;
+        guess = Random.Range(min, max + 1);
         guessText.text = guess.ToString();
     }
     
